@@ -2,7 +2,7 @@
 const PublicHomePage = () => {
   return (
     <div>
-
+      hi
     </div>
   );
 };
