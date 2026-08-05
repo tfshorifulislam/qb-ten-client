@@ -9,7 +9,7 @@ const Logo = () => {
         Q
       </div>
 
-      <div className="flex flex-col leading-none">
+      <div className="hidden md:flex flex-col leading-none">
         <span className="text-xl font-bold tracking-tight text-slate-900">
           QBten
         </span>
