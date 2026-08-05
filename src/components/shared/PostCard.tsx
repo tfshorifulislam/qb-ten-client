@@ -21,13 +21,14 @@ const PostCard = async () => {
                         >
                             {/* Header */}
                             <div className="flex items-center gap-3 p-4">
-                                <Image
-                                    src={`https://ui-avatars.com/api/?name=${item.userName}&background=random`}
-                                    alt={item.userName}
-                                    width={40}
-                                    height={40}
-                                    className="rounded-full"
-                                />
+                                <div className="relative h-10 w-12 overflow-hidden rounded-full">
+                                    <Image
+                                        src="/avatar.jpg"
+                                        alt={item.userName}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
 
                                 <div className="flex justify-between w-full items-center">
                                     <div className="flex items-center gap-2 text-sm">
@@ -72,29 +73,32 @@ const PostCard = async () => {
                             )}
 
                             {/* Footer */}
-                            <div className="flex items-center justify-between border-t px-4 py-3">
-                                <div className="flex items-center gap-2">
-                                    <button className="flex items-center gap-1 rounded-full px-3 py-2 transition hover:bg-gray-100">
+                            {/* <div className="flex items-center gap-2 border-t px-4 py-3">
+                                
+                                <div className="flex items-center rounded-full bg-gray-100">
+                                    <button className="flex items-center gap-1 rounded-l-full px-3 py-2 hover:bg-gray-200 transition">
                                         <ArrowBigUp size={20} />
-                                        <span>{item.upvote}</span>
+                                        <span className="text-sm font-medium">{item.upvote}</span>
                                     </button>
 
-                                    <button className="flex items-center gap-1 rounded-full px-3 py-2 transition hover:bg-gray-100">
+                                    <button className="flex items-center gap-1 rounded-r-full px-3 py-2 hover:bg-gray-200 transition">
                                         <ArrowBigDown size={20} />
-                                        <span>{item.downvote}</span>
+                                        <span className="text-sm font-medium">{item.downvote}</span>
                                     </button>
                                 </div>
 
-                                <button className="flex items-center gap-2 rounded-full px-3 py-2 transition hover:bg-gray-100">
+                               
+                                <button className="flex items-center gap-2 rounded-full px-3 py-2 hover:bg-gray-100 transition">
                                     <MessageCircle size={18} />
-                                    <span>{item.comment}</span>
+                                    <span className="text-sm font-medium">{item.comment}</span>
                                 </button>
 
-                                <button className="flex items-center gap-2 rounded-full px-3 py-2 transition hover:bg-gray-100">
+                                
+                                <button className="flex items-center gap-2 rounded-full px-3 py-2 hover:bg-gray-100 transition">
                                     <Share2 size={18} />
-                                    <span>Share</span>
+                                    <span className="text-sm font-medium">Share</span>
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     )
             }

@@ -3,9 +3,10 @@ import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/shared/Navbar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/shared/AsideBard";
 import { FloatingTrigger } from "@/components/shared/FloatingTrigger";
+import Ad from "@/components/shared/Ad";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -43,25 +44,22 @@ export default function RootLayout({
     <html lang="en" className={cn("h-full", "antialiased", inter.variable, "font-sans", geist.variable)}>
       <body>
         <Navbar />
-        <SidebarProvider>
-          <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-4 ">
-            {/* Left Sidebar */}
-            <div>
-              <AppSidebar />
-            </div>
+        <div>
+          <SidebarProvider className="flex gap-5 max-w-7xl mx-auto">
 
+            <AppSidebar />
             <FloatingTrigger />
 
-            {/* Center Content */}
-            <main>
+            <main className="">
               {children}
             </main>
 
-            <div className="hidden md:block">
-              dsfdsfsdfdsfsdfdsf
-            </div>
-          </div>
-        </SidebarProvider>
+            {/* <div className="hidden lg:block">
+              <Ad />
+            </div> */}
+
+          </SidebarProvider>
+        </div>
       </body>
     </html>
   );
