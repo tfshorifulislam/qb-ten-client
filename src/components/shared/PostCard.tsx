@@ -17,10 +17,9 @@ const PostCard = async () => {
                     ((item: Post) =>
                         <div
                             key={item._id}
-                            className=""
                         >
                             {/* Header */}
-                            <div className="flex items-center gap-3 p-4">
+                            <div className="flex items-center gap-3">
                                 <div className="relative h-10 w-12 overflow-hidden rounded-full">
                                     <Image
                                         src="/avatar.jpg"
@@ -54,7 +53,7 @@ const PostCard = async () => {
                             </div>
 
                             {/* Title */}
-                            <div className="px-4">
+                            <div>
                                 <h2 className="text-xl font-bold text-gray-900">
                                     {item.title}
                                 </h2>
