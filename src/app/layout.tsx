@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/shared/Navbar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/shared/AsideBard";
+import { FloatingTrigger } from "@/components/shared/FloatingTrigger";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -42,13 +43,15 @@ export default function RootLayout({
     <html lang="en" className={cn("h-full", "antialiased", inter.variable, "font-sans", geist.variable)}>
       <body>
         <Navbar />
-          <SidebarProvider >
+        <SidebarProvider >
+          <div className="md:relative">
             <AppSidebar />
-            <main className=" flex-1 flex-col">
-              <SidebarTrigger />
-              {children}
-            </main>
-          </SidebarProvider>
+          </div>
+          <FloatingTrigger />
+          <main className="ml-10 flex-1 flex-col">
+            {children}
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );
