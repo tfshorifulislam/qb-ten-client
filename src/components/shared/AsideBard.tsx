@@ -66,9 +66,8 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar collapsible="icon" className="fixed top-16">
+    <Sidebar collapsible="icon" className="top-15">
       <SidebarHeader />
-
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>

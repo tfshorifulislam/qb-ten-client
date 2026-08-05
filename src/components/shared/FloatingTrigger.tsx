@@ -11,7 +11,7 @@ export function FloatingTrigger() {
       className={cn(
         "fixed top-20 z-50 transition-all duration-300",
         state === "expanded"
-          ? "left-64 -translate-x-1/2"
+          ? "left-6 md:left-64 -translate-x-1/2"
           : "left-9 translate-x-0"
       )}
     >

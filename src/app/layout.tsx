@@ -43,14 +43,24 @@ export default function RootLayout({
     <html lang="en" className={cn("h-full", "antialiased", inter.variable, "font-sans", geist.variable)}>
       <body>
         <Navbar />
-        <SidebarProvider >
-          <div className="md:relative">
-            <AppSidebar />
+        <SidebarProvider>
+          <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-4 ">
+            {/* Left Sidebar */}
+            <div>
+              <AppSidebar />
+            </div>
+
+            <FloatingTrigger />
+
+            {/* Center Content */}
+            <main>
+              {children}
+            </main>
+
+            <div className="hidden md:block">
+              dsfdsfsdfdsfsdfdsf
+            </div>
           </div>
-          <FloatingTrigger />
-          <main className="ml-10 flex-1 flex-col">
-            {children}
-          </main>
         </SidebarProvider>
       </body>
     </html>
