@@ -8,8 +8,9 @@ export function InputButtonGroup() {
         <Field>
             <ButtonGroup>
                 <Input
+                className="w-80"
                     id="input-button-group"
-                    placeholder="Type to search..." />
+                    placeholder="Search anything..." />
                 <Button variant="outline">Search</Button>
             </ButtonGroup>
         </Field>
