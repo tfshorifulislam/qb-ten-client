@@ -7,6 +7,7 @@ import {
     MessageCircle,
     Share2,
 } from "lucide-react";
+import { Button } from "../ui/button";
 const PostCard = async () => {
     const post: Post[] = await getPosts()
     return (
@@ -16,7 +17,7 @@ const PostCard = async () => {
                     ((item: Post) =>
                         <div
                             key={item._id}
-                            className="overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:border-orange-400 hover:shadow-lg"
+                            className="rounded-2xl border"
                         >
                             {/* Header */}
                             <div className="flex items-center gap-3 p-4">
@@ -28,22 +29,26 @@ const PostCard = async () => {
                                     className="rounded-full"
                                 />
 
-                                <div>
+                                <div className="flex justify-between w-full items-center">
                                     <div className="flex items-center gap-2 text-sm">
                                         <span className="font-semibold text-gray-900">
-                                            r/{item.communityName}
+                                            Q/{item.communityName}
                                         </span>
 
-                                        <span className="text-gray-400">•</span>
+                                        {/* <span className="text-gray-400">•</span> */}
 
-                                        <span className="text-gray-500">
+                                        {/* <span className="text-gray-500">
                                             u/{item.userName}
-                                        </span>
+                                        </span> */}
 
-                                        <span className="text-gray-400">• 2h ago</span>
+                                        {/* <span className="text-gray-400">• 2h ago</span> */}
                                     </div>
 
-                                    <p className="text-xs text-gray-400">{item.userEmail}</p>
+                                    <div>
+                                        <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                                            Join
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
 
