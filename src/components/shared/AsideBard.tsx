@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import {
   Home,
   Star,
@@ -10,19 +9,8 @@ import {
   TrendingUp,
   Bookmark,
   User,
-  Settings
+  Settings,
 } from "lucide-react";
-
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
 
 const items = [
   {
@@ -66,32 +54,50 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar collapsible="icon" className="top-15">
-      <SidebarHeader />
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarMenu>
-            {items.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton
-                  isActive={pathname === item.url}
-                  className=" h-12 rounded-xl px-4 transition-all duration-200 hover:bg-primary/10 hover:text-primary data-[active=true]:bg-blue-600 data-[active=true]:text-primary-foreground data-[active=true]:shadow-sm"
-                >
-                  <Link
-                    href={item.url}
-                    className="flex w-full items-center gap-3"
-                  >
-                    <item.icon />
-                    <span className="font-medium">{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
+    <aside className="sticky top-16 h-screen w-72 shrink-0 border-r  bg-[#FAF8FF] px-5 py-6">
+      
+      {/* Menu */}
+      <nav className="space-y-2">
+        {items.map((item) => {
+          const active = pathname === item.url;
+          const Icon = item.icon;
 
-      <SidebarFooter />
-    </Sidebar>
+          return (
+            <Link
+              key={item.title}
+              href={item.url}
+              className={`group relative flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-300 ${
+                active
+                  ? "bg-white "
+                  : "hover:bg-white "
+              }`}
+            >
+              
+              {/* Icon */}
+              <div
+                className={`flex h-10 w-10 items-center justify-center rounded-xl transition-all ${
+                  active
+                    ? "bg-blue-600 text-white"
+                    : "bg-[#F3F1FF] text-gray-600 group-hover:bg-[#EAE6FF]"
+                }`}
+              >
+                <Icon size={20} strokeWidth={2.2} />
+              </div>
+
+              {/* Text */}
+              <span
+                className={`font-medium transition-colors ${
+                  active
+                    ? "text-gray-900"
+                    : "text-gray-600 group-hover:text-gray-900"
+                }`}
+              >
+                {item.title}
+              </span>
+            </Link>
+          );
+        })}
+      </nav>
+    </aside>
   );
 }
