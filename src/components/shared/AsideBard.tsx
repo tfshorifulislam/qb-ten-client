@@ -6,10 +6,10 @@ import {
   Home,
   Star,
   Users,
-  TrendingUp,
   Bookmark,
   User,
   Settings,
+  Plus,
 } from "lucide-react";
 
 const items = [
@@ -24,14 +24,14 @@ const items = [
     icon: Star,
   },
   {
+    title: "Start a Community",
+    url: "/createCommunity",
+    icon: Plus,
+  },
+  {
     title: "Communities",
     url: "/communities",
     icon: Users,
-  },
-  {
-    title: "Trending",
-    url: "/trending",
-    icon: TrendingUp,
   },
   {
     title: "Saved",
@@ -54,7 +54,7 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-16 h-screen w-72 shrink-0 border-r  bg-[#FAF8FF] px-5 py-6">
+    <aside className="sticky top-16 h-screen w-72 shrink-0 border-r  bg-[#fcfcfd] px-5 py-6">
       
       {/* Menu */}
       <nav className="space-y-2">

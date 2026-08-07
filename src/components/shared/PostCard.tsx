@@ -11,12 +11,13 @@ import { Button } from "../ui/button";
 const PostCard = async () => {
     const post: Post[] = await getPosts()
     return (
-        <div className="bg-white p-4 space-y-4">
+        <div className="space-y-6 p-4 md:p-0">
             {
                 post.map
                     ((item: Post) =>
                         <div
                             key={item._id}
+                            className="bg-[#fcfcfd] p-6 border border-[#C3C6D7] rounded-sm md:rounded-md lg:rounded-lg"
                         >
                             {/* Header */}
                             <div className="flex items-center gap-3">
@@ -66,11 +67,11 @@ const PostCard = async () => {
                                         src={item.image}
                                         alt={item.title}
                                         fill
-                                        className="object-cover rounded-lg"
+                                        className="object-cover rounded-sm md:rounded-md lg:rounded-lg"
                                     />
                                 </div>
                             )}
-                            <div className="border-t w-full  mt-5"></div>
+                            {/* <div className="border-t w-full  mt-5"></div> */}
 
                             {/* Footer */}
                             {/* <div className="flex items-center gap-2 border-t px-4 py-3">
