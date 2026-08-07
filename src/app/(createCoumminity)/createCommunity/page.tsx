@@ -17,30 +17,69 @@ export default function CreateACommunity() {
     formState: { errors },
   } = useForm<CommunityForm>();
 
-  const onSubmit = (data: CommunityForm) => {
-    console.log(data);
+  const onSubmit = async (data: CommunityForm) => {
+    try {
+      let imageUrl = "";
 
-    // Image
-    console.log(data.coverImage[0]);
+      // Upload image to ImgBB
+      const image = data.coverImage[0];
 
-    // এখানে FormData বানিয়ে backend এ পাঠাবে
+      if (image) {
+        const formData = new FormData();
+        formData.append("image", image);
+
+        const response = await fetch(
+          `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        const result = await response.json();
+
+        if (result.success) {
+          imageUrl = result.data.display_url;
+        }
+      }
+
+      // Backend এ পাঠানোর data
+      const communityData = {
+        name: data.name,
+        description: data.description,
+        category: data.category,
+        coverImage: imageUrl,
+        type: data.type,
+      };
+
+      console.log("Community Data:", communityData);
+
+      // Example:
+      // await fetch("http://localhost:5000/api/community", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(communityData),
+      // });
+
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
-    <div className="mx-auto w-11/12 max-w-2xl rounded-2xl border bg-white p-8">
-      <h1 className="mb-1 text-3xl font-bold">
-        Create Community
-      </h1>
-
-      <p className="mb-8 text-sm text-gray-500">
-        Build your own community and start discussions or earnings.
+    <div className="mx-auto my-10 w-11/12 max-w-2xl rounded-xl border bg-white p-8 shadow">
+      <h1 className="text-3xl font-bold">Create Community</h1>
+      <p className="mt-2 text-gray-500">
+        Build your own community and start discussions.
       </p>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6"
+        className="mt-8 space-y-6"
       >
-        {/* Name */}
+        {/* Community Name */}
         <div>
           <label className="mb-2 block font-medium">
             Community Name
@@ -48,7 +87,7 @@ export default function CreateACommunity() {
 
           <input
             type="text"
-            placeholder="reactjs"
+            placeholder="React Bangladesh"
             {...register("name", {
               required: "Community name is required",
             })}
@@ -70,7 +109,7 @@ export default function CreateACommunity() {
 
           <textarea
             rows={5}
-            placeholder="Tell people about your community..."
+            placeholder="Write something about your community..."
             {...register("description", {
               required: "Description is required",
             })}
@@ -92,7 +131,7 @@ export default function CreateACommunity() {
 
           <select
             {...register("category", {
-              required: true,
+              required: "Category is required",
             })}
             className="w-full rounded-lg border p-3"
           >
@@ -106,6 +145,12 @@ export default function CreateACommunity() {
             <option value="Business">Business</option>
             <option value="Lifestyle">Lifestyle</option>
           </select>
+
+          {errors.category && (
+            <p className="mt-1 text-sm text-red-500">
+              {errors.category.message}
+            </p>
+          )}
         </div>
 
         {/* Cover Image */}
@@ -118,13 +163,19 @@ export default function CreateACommunity() {
             type="file"
             accept="image/*"
             {...register("coverImage", {
-              required: true,
+              required: "Cover image is required",
             })}
             className="w-full rounded-lg border p-3"
           />
+
+          {errors.coverImage && (
+            <p className="mt-1 text-sm text-red-500">
+              {errors.coverImage.message}
+            </p>
+          )}
         </div>
 
-        {/* Type */}
+        {/* Community Type */}
         <div>
           <label className="mb-2 block font-medium">
             Community Type
@@ -134,19 +185,15 @@ export default function CreateACommunity() {
             {...register("type")}
             className="w-full rounded-lg border p-3"
           >
-            <option value="public">
-              🌍 Public
-            </option>
-
-            <option value="private">
-              🔒 Private
-            </option>
+            <option value="public">🌍 Public</option>
+            <option value="private">🔒 Private</option>
           </select>
         </div>
 
         <button
           type="submit"
-          className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-500 cursor-pointer">
+          className="w-full cursor-pointer rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+        >
           Create Community
         </button>
       </form>
