@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Ad = () => {
   return (
-    <aside className="sticky top-24 space-y-4">
+    <aside className="sticky top-24 space-y-4 w-72">
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
         <div className="relative h-44 w-full">
           <Image

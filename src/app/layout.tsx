@@ -45,7 +45,9 @@ export default function RootLayout({
       <body>
         <Navbar />
         <div className="flex max-w-360 mx-auto gap-5">
-          <AppSidebar />
+          <div className="hidden md:block">
+            <AppSidebar />
+          </div>
           <main className="flex-1 min-h-screen max-w-full">
             <SmoothScroll>{children}</SmoothScroll>
           </main>
