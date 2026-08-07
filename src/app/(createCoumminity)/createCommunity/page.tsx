@@ -54,13 +54,13 @@ export default function CreateACommunity() {
 
             // Backend এ পাঠানোর data
             const communityData = {
-                name: data.name,
+                title: data.name,
                 description: data.description,
-                category: data.category,
-                coverImage: imageUrl,
+                communityName: data.category,
+                image: imageUrl,
                 type: data.type,
-                // adminEmail: userEmail,
-                // adminName: userName
+                // userEmail: userEmail,
+                // userName: userName
             };
 
             console.log("Community Data:", communityData);
@@ -82,7 +82,7 @@ export default function CreateACommunity() {
     };
 
     return (
-        <div className="mx-auto my-10 w-11/12 max-w-2xl rounded-xl border bg-white p-8 shadow">
+        <div className="mx-auto w-11/12 max-w-2xl rounded-xl border bg-white p-8 shadow">
             <h1 className="text-3xl font-bold">Create Community</h1>
             <p className="mt-2 text-gray-500">
                 Build your own community and start discussions.

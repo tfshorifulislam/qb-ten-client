@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 const PostCard = async () => {
     const post: Post[] = await getPosts()
     return (
-        <div className="space-y-6 p-4 md:p-0">
+        <div className="space-y-6 p-4 md:p-0 my-2 md:my-5">
             {
                 post.map
                     ((item: Post) =>
@@ -24,7 +24,7 @@ const PostCard = async () => {
                                 <div className="relative h-10 w-12 overflow-hidden rounded-full">
                                     <Image
                                         src="/avatar.jpg"
-                                        alt={item.userName}
+                                        alt='Q'
                                         fill
                                         className="object-cover"
                                     />
@@ -36,11 +36,11 @@ const PostCard = async () => {
                                             Q/{item.communityName}
                                         </span>
 
-                                        {/* <span className="text-gray-400">•</span> */}
+                                        <span className="text-gray-400">•</span>
 
-                                        {/* <span className="text-gray-500">
+                                        <span className="text-gray-500">
                                             u/{item.userName}
-                                        </span> */}
+                                        </span>
 
                                         {/* <span className="text-gray-400">• 2h ago</span> */}
                                     </div>
